@@ -9,6 +9,9 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  <listener>
+  	<listener-class>com.gn.common.ContextListenerTest</listener-class>
+  </listener>
   <filter>
   	<filter-name>encoding</filter-name>
   	<filter-class>com.gn.common.EncodingFilter</filter-class>
