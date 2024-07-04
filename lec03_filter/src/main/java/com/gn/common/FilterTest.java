@@ -9,9 +9,8 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
-
-
-@WebFilter(servletNames = "filterTestServlet")
+@WebFilter("/filtertest/*")
+// @WebFilter(servletNames = "filterTestServlet")
 public class FilterTest extends HttpFilter implements Filter {
        
 
@@ -25,8 +24,9 @@ public class FilterTest extends HttpFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// 실제 클라이언트의 요청과 응답을 가로채는 메소드
-		System.out.println("필터 동작 시점 확인");
+		System.out.println("필터 동작 시점 확인(요청)");
 		chain.doFilter(request, response);
+		System.out.println("필터 동작 시점 확인(응답)");
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

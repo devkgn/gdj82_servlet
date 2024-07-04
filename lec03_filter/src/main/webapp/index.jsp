@@ -12,5 +12,21 @@
 		<input type="text" name="data">
 		<input type="submit" value="데이터 전송">
 	</form>
+	<form action="/sendMsg" method="post">
+		<fieldset>
+			<legend>메시지 작성</legend>
+			<textarea cols="20" rows="3" name="msg"></textarea>
+			<input type="submit" value="보내기">
+		</fieldset>
+	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
