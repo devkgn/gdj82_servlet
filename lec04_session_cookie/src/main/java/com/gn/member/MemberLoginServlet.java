@@ -74,8 +74,7 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("member", m);
 			session.setMaxInactiveInterval(10);
 		}
-		
-		
+
 		response.sendRedirect("/");
 	}
 

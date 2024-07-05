@@ -20,10 +20,17 @@
 <title>쿠키, 세션</title>
 </head>
 <body>
+	<%@ page import="com.gn.member.Member" %>
 	<%if(session.isNew() || session.getAttribute("member") == null){%>
 		<a href="views/login.jsp">로그인</a>
 	<%}else{%>
-		로그인한 사용자 정보 출력
+		<a href="/logout">로그아웃</a>
+		<ul>
+			<% Member member = (Member)session.getAttribute("member"); %>
+			<li>이름 : <%=member.getMemberName() %></li>
+			<li>이메일 : <%=member.getMemberEmail() %></li>
+			<li>전화번호 : <%=member.getMemberPhone() %></li>
+		</ul>
 	<%}%>
 	<h1>쿠키</h1>
 	<ul>
