@@ -20,6 +20,11 @@
 <title>쿠키, 세션</title>
 </head>
 <body>
+	<%if(session.isNew() || session.getAttribute("member") == null){%>
+		<a href="views/login.jsp">로그인</a>
+	<%}else{%>
+		로그인한 사용자 정보 출력
+	<%}%>
 	<h1>쿠키</h1>
 	<ul>
 		<li>
