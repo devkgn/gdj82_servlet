@@ -25,11 +25,32 @@
 		<li>
 			<a href="/createCookie">1. 생성하기</a>
 		</li>
+		<li>
+			<a href="/editCookie">2. 수정하기</a>
+		</li>
+		<li>
+			<a href="/removeCookie">3. 삭제하기</a>
+		</li>
 	</ul>
 	<%
 		Cookie[] cookies = request.getCookies();
 		String id = getCookieValue(cookies,"user_id");
 	%>
 	<h3>아이디 : <%=id%></h3>	
+	<h1>세션(Session)</h1>
+	<form action="/createSession" method="get">
+		<label>아이디 : </label>
+		<input type="text" name="user_id">
+		<input type="submit" value="생성하기">
+	</form>
+	<a href="/getSession">세션값 가져오기</a>
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
