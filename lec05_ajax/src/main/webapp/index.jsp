@@ -47,10 +47,29 @@
 	</script>
 	<h2>jQuery방식</h2>
 	<button id="get_btn">Get방식</button>
+	<button id="post_btn">Post방식</button>
 	<div id="jquery_container">진행중...</div>
 	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 	<script>
 		$(function(){
+			$('#post_btn').on('click',function(){
+				$.ajax({
+					type:'post',
+					url:'<%=request.getContextPath()%>/jsAjaxPostTest',
+					contentType:"application/x-www-form-urlencoded; charset=UTF-8",
+					data:{name:'홍길동'},
+					success : function(data){
+						console.log(data);
+					},
+					error : function(request,status,error){
+						console.log(request);
+						console.log(status);
+						console.log(error);
+					}
+				});
+			});
+			
+			
 			$('#get_btn').on('click',function(){
 				$.ajax({
 					type:'GET',
