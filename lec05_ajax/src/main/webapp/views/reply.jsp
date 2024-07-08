@@ -36,10 +36,37 @@
 	            </div>
 	          </div>
 	        </div>
-	
 	      </div>
 	    </div>
 	  </div>
 	</div>
+	<script>
+		$(function(){
+			$("#add_btn").on('click',function(event){
+				event.preventDefault();
+				const text = $("#add_text").val();
+				const user = $("#add_user").val();
+				$.ajax({
+					type:'post',
+					url:'<%=request.getContextPath()%>/replyAjax',
+					contentType:'application/x-www-form-urlencoded; charset=utf-8',
+					dataType:'JSON',
+					data:{"text":text,"user":user},
+					success: function(data){
+						console.log(data);
+					}
+				});
+			});
+		});
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	</script>
 </body>
 </html>
