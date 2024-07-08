@@ -53,7 +53,8 @@
 					dataType:'JSON',
 					data:{"text":text,"user":user},
 					success: function(data){
-						console.log(data);
+						console.log(data.text);
+						console.log(data['name']);
 					}
 				});
 			});
