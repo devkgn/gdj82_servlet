@@ -46,6 +46,7 @@
 				event.preventDefault();
 				const text = $("#add_text").val();
 				const user = $("#add_user").val();
+				console.log(user);
 				$.ajax({
 					type:'post',
 					url:'<%=request.getContextPath()%>/replyAjax',

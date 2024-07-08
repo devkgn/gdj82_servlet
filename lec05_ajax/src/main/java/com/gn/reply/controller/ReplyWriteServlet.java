@@ -17,7 +17,7 @@ public class ReplyWriteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String text = request.getParameter("text");
-		String name = request.getParameter("name");
+		String name = request.getParameter("user");
 		System.out.println("텍스트 : "+text+"\n-"+name+"-");
 		
 	}
