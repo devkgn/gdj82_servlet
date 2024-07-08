@@ -10,8 +10,22 @@
 	<h1>JavaScript방식</h1>
 	<input type="text" id="name">
 	<input type="button" value="Get방식" onclick="ajaxTestGet();">
+	<input type="button" value="Post방식" onclick="ajaxTestPost();">
 	<div id="ajax_container">로딩중...</div>
 	<script>
+		const ajaxTestPost = function(){
+			const xhr = new XMLHttpRequest();
+			const name = document.getElementById("name").value;
+			xhr.open("post","/jsAjaxPostTest",true);
+			xhr.onreadystatechange = function(){
+				if(xhr.readyState == 4 && xhr.status == 200){
+					document.getElementById("ajax_container").innerHTML = xhr.responseText;
+				}
+			}
+			xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");
+			xhr.send("name="+name);
+		}
+	
 		const ajaxTestGet = function(){
 			// 1. 객체 생성
 			const xhr = new XMLHttpRequest();
