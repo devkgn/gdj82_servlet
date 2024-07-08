@@ -16,7 +16,7 @@
 		const ajaxTestPost = function(){
 			const xhr = new XMLHttpRequest();
 			const name = document.getElementById("name").value;
-			xhr.open("post","/jsAjaxPostTest",true);
+			xhr.open("post","<%=request.getContextPath()%>/jsAjaxPostTest",true);
 			xhr.onreadystatechange = function(){
 				if(xhr.readyState == 4 && xhr.status == 200){
 					document.getElementById("ajax_container").innerHTML = xhr.responseText;
@@ -45,11 +45,23 @@
 			xhr.send();
 		}
 	</script>
-	
-	
-	
-	
-	
+	<h2>jQuery방식</h2>
+	<button id="get_btn">Get방식</button>
+	<div id="jquery_container">진행중...</div>
+	<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+	<script>
+		$(function(){
+			$('#get_btn').on('click',function(){
+				$.ajax({
+					type:'GET',
+					url:"<%=request.getContextPath()%>/jsAjaxGetTest?name=김철수",
+					success:function(data){
+						$('#jquery_container').html(data);
+					}
+				});
+			});
+		});
+	</script>
 	
 	
 	
