@@ -62,9 +62,8 @@
 						console.log(data);
 					},
 					error : function(request,status,error){
-						console.log(request);
-						console.log(status);
-						console.log(error);
+						console.log(request.status);
+						console.log(request.responseText);
 					}
 				});
 			});
@@ -81,7 +80,7 @@
 			});
 		});
 	</script>
-	
+	<a href="<%=request.getContextPath()%>/reply/list">댓글 페이지</a>
 	
 	
 	
