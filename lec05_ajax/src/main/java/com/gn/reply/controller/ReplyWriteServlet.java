@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 @WebServlet("/replyAjax")
@@ -34,6 +35,9 @@ public class ReplyWriteServlet extends HttpServlet {
 		o.put("date", today);
 		
 		// {text:"반갑습니다.",name:"김철수",date:"2024-07-08 12:40"}
+		
+//		JSONArray arr = new JSONArray();
+//		arr.add(o);
 		
 		response.setContentType("application/json;charset=utf-8");
 		response.getWriter().print(o);
