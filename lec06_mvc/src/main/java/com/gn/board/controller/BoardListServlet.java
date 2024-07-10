@@ -3,6 +3,7 @@ package com.gn.board.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,10 +29,14 @@ public class BoardListServlet extends HttpServlet {
 		
 		List<Board> list = new BoardService().selectBoardList(option);
 		
-		1. /views/board/list.jsp
-		2. css 추가
-		3. 화면 이동 작성
-		4. 화면 이동할때 속성값을 전달
+//		1. /views/board/list.jsp
+//		2. css 추가
+//		3. 화면 이동 작성
+//		4. 화면 이동할때 속성값을 전달
+
+		request.setAttribute("resultList", list);
+		RequestDispatcher rd=request.getRequestDispatcher("/views/board/list.jsp");
+		rd.forward(request, response);
 		
 	}
 

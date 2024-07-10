@@ -43,7 +43,7 @@ public class BoardDao {
 			// O : SELECT * FROM board WHERE board_title LIKE CONCAT('%',board_title,'%')
 			String sql = "SELECT * FROM board";
 			if(option.getBoard_title() != null) {
-				sql += " WHERE board_title LIKE CONCAT('%',"+option.getBoard_title()+",'%')";
+				sql += " WHERE board_title LIKE CONCAT('%','"+option.getBoard_title()+"','%')";
 			}
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
