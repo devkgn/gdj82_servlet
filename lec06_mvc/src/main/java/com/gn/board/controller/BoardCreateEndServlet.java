@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
+import com.gn.board.service.BoardService;
 import com.gn.board.vo.Board;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -55,7 +56,7 @@ public class BoardCreateEndServlet extends HttpServlet {
 			b.setOri_thumbnail(oriName);
 			b.setNew_thumbnail(reName);
 			
-			int result = new BoardService().createBoard();
+			int result = new BoardService().createBoard(b);
 			RequestDispatcher view = request.getRequestDispatcher("/views/board/create_fail.jsp");
 			if(result > 0) {
 				view = request.getRequestDispatcher("/views/board/create_success.jsp");
