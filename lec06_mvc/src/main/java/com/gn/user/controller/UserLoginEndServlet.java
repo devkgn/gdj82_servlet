@@ -28,8 +28,8 @@ public class UserLoginEndServlet extends HttpServlet {
 		String id = request.getParameter("user_id");
 		String pw = request.getParameter("user_pw");
 		
-		User u = new UserService().loginUser(id,pw);
-		// User u = new User(1,"admin","+b8wlv1+6bocqQTaxmR/xiGBTPjjaBLUY5k1TanJG3m9EkTX4etpVnwGKL1+resfQJUf0XpT2nrXDA==","관리자");
+		// User u = new UserService().loginUser(id,pw);
+		User u = new User(1,"admin","+b8wlv1+6bocqQTaxmR/xiGBTPjjaBLUY5k1TanJG3m9EkTX4etpVnwGKL1+resfQJUf0XpT2nrXDA==","관리자");
 		//User u = null;
 		// 1. User u = new UserService().loginUser(id,pw); 코드 주석처리
 		// 2. User 객체의 매개변수 생성자에 데이터베이스 실제 값을 넣어서 User 구성
