@@ -99,8 +99,12 @@ public class Paging {
 		// 3번페이지 -> 1번
 		// 8번페이지 -> 6번
 		pageBarStart = ((nowPage-1)/pageBarSize)*pageBarSize +1;
+		pageBarEnd = pageBarStart + pageBarSize -1;
+		if(pageBarEnd > totalPage) pageBarEnd = totalPage;
 		
-		
+		// 이전, 다음
+		if(pageBarStart == 1) prev = false;
+		if(pageBarEnd >= totalPage) next = false;
 		
 	}
 	
