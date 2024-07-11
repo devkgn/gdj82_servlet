@@ -26,13 +26,11 @@ public class BoardListServlet extends HttpServlet {
 		
 		Board option = new Board();
 		option.setBoard_title(title);
+
+		// 전체 목록 개수 -> 페이징바 구성
+		
 		
 		List<Board> list = new BoardService().selectBoardList(option);
-		
-//		1. /views/board/list.jsp
-//		2. css 추가
-//		3. 화면 이동 작성
-//		4. 화면 이동할때 속성값을 전달
 
 		request.setAttribute("resultList", list);
 		RequestDispatcher rd=request.getRequestDispatcher("/views/board/list.jsp");
