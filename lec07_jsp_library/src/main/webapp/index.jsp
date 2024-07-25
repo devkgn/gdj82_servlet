@@ -27,11 +27,11 @@
 	<a href="views/login.jsp">로그인 페이지로 이동</a>
 	<h1>EL/JSTL</h1>
 	<h2>EL(Expression Language)</h2>
-	<a href="/elBasic">1. el의 기본구문</a>
+	<a href="/elBasic">1. el의 기본구문</a><br>
 	<a href="/elOperation">2. el의 연산자</a>
-	
-	
-	
+	<h2>JSTL 연습하기</h2>
+	<h3>1. JSTL Core Library</h3>
+	<a href="/views/jstl/01_core.jsp">core library</a>
 	
 	
 	
