@@ -22,10 +22,15 @@
 		<li>${student.age}세</li>
 		<li>${teacher.age}세</li>
 	</ol>
-	
-	
-	
-	
+	<h3>3.여러 내장객체에 저장된 key값이 동일할때</h3>
+	<% pageContext.setAttribute("test","페이지");%>
+	<span>${test}</span>
+	<p>
+		page에 담긴값 : ${pageScope.test }<br>
+		request에 담긴값 : ${requestScope.test }<br>
+		session에 담긴값 : ${sessionScope.test }<br>
+		application에 담긴값 : ${applicationScope.test }
+	</p>
 	
 	
 	
