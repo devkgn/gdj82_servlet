@@ -28,7 +28,7 @@
 	<h1>EL/JSTL</h1>
 	<h2>EL(Expression Language)</h2>
 	<a href="/elBasic">1. el의 기본구문</a>
-	
+	<a href="/elOperation">2. el의 연산자</a>
 	
 	
 	
