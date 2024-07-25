@@ -1,6 +1,7 @@
 package com.gn.common.sql;
 
-import java.io.FileReader;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -14,8 +15,9 @@ public class JDBCTemplate {
 		Connection conn = null;
 		Properties prop = new Properties();
 		try {
-			String path = JDBCTemplate.class.getResource("driver.properties").getPath();
-			prop.load(new FileReader(path));
+			String path = JDBCTemplate.class.getResource("event.properties").getPath();
+			FileOutputStream fos = new FileOutputStream(new File(path));
+			prop.store(fos, "eventList");
 			
 			Class.forName(prop.getProperty("driver"));
 			String url = prop.getProperty("url");

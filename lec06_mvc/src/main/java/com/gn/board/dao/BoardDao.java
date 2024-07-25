@@ -84,8 +84,7 @@ public class BoardDao {
 						rs.getString("new_thumbnail"));
 				list.add(resultVo);
 			}
-			
-			
+						
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
