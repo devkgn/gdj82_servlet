@@ -32,6 +32,70 @@
 			<b>그 외의 상황</b>
 		</c:otherwise>
 	</c:choose>
+	<h1>4. 반복문(forEach)</h1>
+	<% for(int i = 1 ; i <= 10 ; i += 2) {%>
+		<p>스크립틀릿 반복 : <%=i %></p>
+	<%} %>
+	<c:forEach var="i" begin="1" end="10" step="2">
+		<p>jstl 반복 : ${i} </p>
+	</c:forEach>
+	<!-- 태그 안에 반복문 사용 가능 -->
+	<c:forEach var="i" begin="1" end="6">
+		<h${i }>Hello~!</h${i }>
+	</c:forEach>
+	<% String[] colors = {"red","green","blue"};
+	request.setAttribute("colors",colors);%>
+	<% for(String s : colors){ %>
+		<mark><%=s %></mark>
+	<%} %>
+	<ul>
+		<c:forEach var="c" items="${colors }">
+			<li style="color:${c };">${c }</li>
+		</c:forEach>
+	</ul>
+	<h1>varStatus 사용해보기</h1>
+	<%@ page import="java.util.*, com.gn.vo.Person" %>
+	<%
+		List<Person> list = new ArrayList<Person>();
+		list.add(new Person("홍길동",20));
+		list.add(new Person("이영희",30));
+		list.add(new Person("김철수",40));
+		request.setAttribute("resultList", list);
+	%>
+	<table border="1">
+		<thead>
+			<tr>
+				<th>번호</th>
+				<th>이름</th>
+				<th>나이</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:choose>
+				<c:when test="${empty resultList }">
+					<tr>
+						<td colspan="3">조회된 사람이 없습니다.</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${resultList }" var="p" varStatus="status">
+						<tr>
+							<td>${status.count }</td>
+							<td>${p.name }</td>
+							<td>${p.age }</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</tbody>
+	</table>
+	<h1>4. url</h1>
+	<a href="/user/detail">기존방식</a>
+	<a href="<c:url value='/user/detail'/>">jstl 방식</a>
+	
+	
+	
+	
 	
 	
 	
