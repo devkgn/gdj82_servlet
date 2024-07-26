@@ -93,6 +93,11 @@
 	<a href="/user/detail">기존방식</a>
 	<a href="<c:url value='/user/detail'/>">jstl 방식</a>
 	
+	<a href="/user/detail?userNo=2">기존방식</a>
+	<c:url var="detailUrl" value="/user/detail">
+		<c:param name="userNo" value="2"/>
+	</c:url>
+	<a href="${detailUrl }">jstl방식</a>
 	
 	
 	

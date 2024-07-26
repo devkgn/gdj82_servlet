@@ -32,10 +32,10 @@
 	<h2>JSTL 연습하기</h2>
 	<h3>1. JSTL Core Library</h3>
 	<a href="/views/jstl/01_core.jsp">core library</a>
-	
-	
-	
-	
+	<h3>2. JSTL Formatting Library</h3>
+	<a href="/views/jstl/02_formatting.jsp">fmt library</a>
+	<h3>3. JSTL Function Library</h3>
+	<a href="/views/jstl/03_func.jsp">function library</a>
 	
 	
 </body>
