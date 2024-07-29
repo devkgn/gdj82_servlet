@@ -11,6 +11,13 @@ import com.gn.board.vo.Board;
 
 public class BoardService {
 	
+	public Board selectBoardOne(int boardNo) {
+		SqlSession session = getSqlSession();
+		Board detail = new BoardDao().selectBoardOne(session,boardNo);
+		session.close();
+		return detail;	
+	}
+	
 	public List<Board> selectBoardList(Board option){
 		SqlSession session = getSqlSession();
 		List<Board> resultList = new BoardDao().selectBoardList(session,option);

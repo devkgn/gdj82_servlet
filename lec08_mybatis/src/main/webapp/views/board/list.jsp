@@ -27,8 +27,8 @@
 				</c:when>
 				<c:otherwise>
 					<c:forEach items="${resultList }" var="b" varStatus="status">
-						<tr>
-							<td><c:out value="${status.count }"/></td>
+						<tr onclick="location.assign('<c:url value='/boardDetail?boardNo=${b.board_no }'/>')">
+							<td><c:out value="${paging.numPerPage*(paging.nowPage-1)+status.count }"/></td>
 							<td><c:out value="${b.board_title }"/></td>
 							<td><c:out value="${b.board_content }"/></td>
 							<td><fmt:formatDate pattern="yy-MM-dd" value="${b.reg_date }"/></td>

@@ -8,6 +8,10 @@ import com.gn.board.vo.Board;
 
 public class BoardDao {
 	
+	public Board selectBoardOne(SqlSession session,int boardNo) {
+		return session.selectOne("boardMapper.selectBoardOne",boardNo);
+	}
+	
 	public List<Board> selectBoardList(SqlSession session, Board option){
 		return session.selectList("boardMapper.selectBoardList",option);
 	}
