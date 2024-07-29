@@ -38,5 +38,24 @@
 			</c:choose>
 		</tbody>
 	</table>
+	<c:if test="${not empty paging }">
+		<div>
+			<div>
+				<c:if test="${paging.prev }">
+					<a href="<c:url value='/boardList?nowPage=${paging.pageBarStart-1 }'/>">&laquo;</a>
+				</c:if>
+				<c:forEach begin="${paging.pageBarStart }" end="${paging.pageBarEnd }" var="idx">
+					<a href="<c:url value='/boardList?nowPage=${idx }'/>">${idx }</a>
+				</c:forEach>
+				<c:if test="${paging.next }">
+					<a href="<c:url value='/boardList?nowPage=${paging.pageBarEnd+1 }'/>">&raquo;</a>
+				</c:if>
+			</div>
+		</div>
+	</c:if>
+	
+	
+	
+	
 </body>
 </html>

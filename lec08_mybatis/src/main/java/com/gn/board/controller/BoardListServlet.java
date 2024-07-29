@@ -23,8 +23,18 @@ public class BoardListServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Board option = new Board();
+		
+		String nowPage = request.getParameter("nowPage");
+		if(nowPage != null) {
+			option.setNowPage(Integer.parseInt(nowPage));
+		}
+		
+		option.setTotalData(new BoardService().selectBoardCount());
+		
 		// Board 목록 조회(mybatis)해서 화면으로 전달(jstl)
-		List<Board> resultList = new BoardService().selectBoardList();
+		List<Board> resultList = new BoardService().selectBoardList(option);
+		request.setAttribute("paging", option);
 		request.setAttribute("resultList", resultList);
 		RequestDispatcher view = request.getRequestDispatcher("/views/board/list.jsp");
 		view.forward(request, response);

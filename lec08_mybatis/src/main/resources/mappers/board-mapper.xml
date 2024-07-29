@@ -3,8 +3,16 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
-	<select id="selectBoardList" resultType="com.gn.board.vo.Board">
+	<select id="selectBoardList" resultType="com.gn.board.vo.Board"
+	parameterType="com.gn.board.vo.Board">
 		SELECT *
 		FROM `board`
+		LIMIT #{limitPageNo}, #{numPerPage}
 	</select>
+	<select id="selectBoardCount" resultType="int">
+		SELECT COUNT(*)
+		FROM `board`
+	</select>
+	
+	
 </mapper>
