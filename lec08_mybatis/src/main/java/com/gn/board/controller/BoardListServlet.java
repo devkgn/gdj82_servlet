@@ -24,6 +24,7 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// Board 목록 조회(mybatis)해서 화면으로 전달(jstl)
 		List<Board> resultList = new BoardService().selectBoardList();
+		System.out.println(resultList);
 	}
 
 
