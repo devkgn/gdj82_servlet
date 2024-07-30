@@ -12,6 +12,7 @@
 	<input type="button" value="등록" onclick="openInsert();">
 	<form action="<c:url value='/boardList'/>" method="get" id="searchFrm">
 		<input type="text" name="board_title" placeholder="검색 제목을 입력하세요">
+		<input type="text" name="board_content" placeholder="검색 내용을 입력하세요">
 		<input type="submit" value="검색">
 	</form>
 	<table border="1">

@@ -28,6 +28,9 @@ public class BoardListServlet extends HttpServlet {
 		String boardTitle = request.getParameter("board_title");
 		option.setBoard_title(boardTitle);
 		
+		String boardContent = request.getParameter("board_content");
+		option.setBoard_content(boardContent);
+		
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));

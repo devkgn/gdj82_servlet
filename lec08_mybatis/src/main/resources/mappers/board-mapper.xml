@@ -31,9 +31,14 @@
 	parameterType="com.gn.board.vo.Board">
 		SELECT *
 		FROM `board`
-		<if test='board_title != null and board_title.equals("") == false'>
-			WHERE board_title LIKE CONCAT('%',#{board_title},'%')
-		</if>
+		<where>
+			<if test='board_title != null and board_title.equals("") == false'>
+				AND board_title LIKE CONCAT('%',#{board_title},'%')
+			</if>
+			<if test='board_content != null and board_content.equals("") == false'>
+				AND board_content LIKE CONCAT('%',#{board_content},'%')
+			</if>
+		</where>
 		LIMIT #{limitPageNo}, #{numPerPage}	
 	</select>
 	
@@ -41,9 +46,14 @@
 	parameterType="com.gn.board.vo.Board">
 		SELECT COUNT(*)
 		FROM `board`
-		<if test='board_title != null and board_title.equals("") == false'>
-			WHERE board_title LIKE CONCAT('%',#{board_title},'%')
-		</if>
+		<where>
+			<if test='board_title != null and board_title.equals("") == false'>
+				AND board_title LIKE CONCAT('%',#{board_title},'%')
+			</if>
+			<if test='board_content != null and board_content.equals("") == false'>
+				AND board_content LIKE CONCAT('%',#{board_content},'%')
+			</if>
+		</where>
 	</select>
 	
 	
