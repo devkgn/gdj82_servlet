@@ -3,6 +3,11 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
+	<insert id="insertBoard" parameterType="com.gn.board.vo.Board">
+		INSERT INTO `board`(board_title, board_content)
+		VALUES (#{board_title}, #{board_content})
+	</insert>
+	
 	<delete id="deleteBoard" parameterType="_int">
 		DELETE FROM `board`
 		WHERE board_no = #{board_no}
@@ -26,11 +31,19 @@
 	parameterType="com.gn.board.vo.Board">
 		SELECT *
 		FROM `board`
-		LIMIT #{limitPageNo}, #{numPerPage}
+		<if test='board_title != null and board_title.equals("") == false'>
+			WHERE board_title LIKE CONCAT('%',#{board_title},'%')
+		</if>
+		LIMIT #{limitPageNo}, #{numPerPage}	
 	</select>
-	<select id="selectBoardCount" resultType="int">
+	
+	<select id="selectBoardCount" resultType="int"
+	parameterType="com.gn.board.vo.Board">
 		SELECT COUNT(*)
 		FROM `board`
+		<if test='board_title != null and board_title.equals("") == false'>
+			WHERE board_title LIKE CONCAT('%',#{board_title},'%')
+		</if>
 	</select>
 	
 	

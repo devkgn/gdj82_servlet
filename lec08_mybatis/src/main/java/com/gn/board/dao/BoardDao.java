@@ -8,6 +8,10 @@ import com.gn.board.vo.Board;
 
 public class BoardDao {
 	
+	public int insertBoard(SqlSession session,Board vo) {
+		return session.insert("boardMapper.insertBoard",vo);
+	}
+	
 	public int deleteBoard(SqlSession session,int boardNo) {
 		return session.delete("boardMapper.deleteBoard",boardNo);
 	}
@@ -24,7 +28,7 @@ public class BoardDao {
 		return session.selectList("boardMapper.selectBoardList",option);
 	}
 	
-	public int selectBoardCount(SqlSession session) {
-		return session.selectOne("boardMapper.selectBoardCount");
+	public int selectBoardCount(SqlSession session, Board option) {
+		return session.selectOne("boardMapper.selectBoardCount",option);
 	}
 }

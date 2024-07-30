@@ -25,12 +25,15 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Board option = new Board();
 		
+		String boardTitle = request.getParameter("board_title");
+		option.setBoard_title(boardTitle);
+		
 		String nowPage = request.getParameter("nowPage");
 		if(nowPage != null) {
 			option.setNowPage(Integer.parseInt(nowPage));
 		}
 		
-		option.setTotalData(new BoardService().selectBoardCount());
+		option.setTotalData(new BoardService().selectBoardCount(option));
 		
 		// Board 목록 조회(mybatis)해서 화면으로 전달(jstl)
 		List<Board> resultList = new BoardService().selectBoardList(option);

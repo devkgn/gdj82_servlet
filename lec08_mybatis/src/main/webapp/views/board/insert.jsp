@@ -20,9 +20,6 @@
 			opener.document.getElementById("parent_board_content").value = childContent;
 			window.close();
 		}
-		
-		
-		
 	</script>
 </body>
 </html>

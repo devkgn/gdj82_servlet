@@ -11,6 +11,13 @@ import com.gn.board.vo.Board;
 
 public class BoardService {
 	
+	public int insertBoard(Board vo) {
+		SqlSession session = getSqlSession();
+		int result = new BoardDao().insertBoard(session,vo);
+		session.close();
+		return result;
+	}
+	
 	public int deleteBoard(int boardNo) {
 		SqlSession session = getSqlSession();
 		int result = new BoardDao().deleteBoard(session,boardNo);
@@ -39,9 +46,9 @@ public class BoardService {
 		return resultList;
 	}
 	
-	public int selectBoardCount() {
+	public int selectBoardCount(Board option) {
 		SqlSession session = getSqlSession();
-		int count = new BoardDao().selectBoardCount(session);
+		int count = new BoardDao().selectBoardCount(session,option);
 		session.close();
 		return count;
 	}
