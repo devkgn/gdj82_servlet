@@ -59,9 +59,28 @@
 			</div>
 		</div>
 	</c:if>
+	<form style="display:none;" action="<c:url value='/boardInsertEnd'/>" method="post" id="insertFrm">
+		<label for="parent_board_title">제목</label>
+		<input type="text" id="parent_board_title" name="board_title">
+		<label for="parent_board_content">내용</label>
+		<textarea name="board_content" id="parent_board_content"></textarea>
+		<input type="button" value="등록" onclick="insertBoard();">
+	</form>
 <script>
 	const openInsert = function(){
 		let newWin = window.open("<%=request.getContextPath()%>/boardInsert","_blank","width=300,height=300");
+		let timer = setInterval(function(){
+			if(newWin.closed){
+				clearInterval(timer);
+				const title = document.getElementById("parent_board_title").value;
+				const content = document.getElementById("parent_board_content").value;
+				// ajax로 /boardInsertEnd(post) 경로에 데이터 전달해서 insert 
+				// insert 잘 수행되었을 때 : 목록 화면 전환
+				// insert 실패 : "게시글 등록 중 오류가 발생하였습니다."
+				
+				
+			}
+		},1000);
 	}
 
 	const tds = document.querySelectorAll("table tr td:not(:last-child)");
