@@ -11,8 +11,14 @@
 <body>
 	<input type="button" value="등록" onclick="openInsert();">
 	<form action="<c:url value='/boardList'/>" method="get" id="searchFrm">
-		<input type="text" name="board_title" placeholder="검색 제목을 입력하세요">
-		<input type="text" name="board_content" placeholder="검색 내용을 입력하세요">
+		<select name="order_type" id="order_type">
+			<option value="1">최신순</option>
+			<option value="2">오래된순</option>
+		</select>
+		<input type="text" name="board_title" placeholder="검색 제목을 입력하세요"
+		value="<c:out value='${paging.board_title }'/>">
+		<input type="text" name="board_content" placeholder="검색 내용을 입력하세요"
+		value="<c:out value='${paging.board_content }'/>">
 		<input type="submit" value="검색">
 	</form>
 	<table border="1">
@@ -72,6 +78,12 @@
 		<input type="button" value="등록" onclick="insertBoard();">
 	</form>
 <script>
+	const orderType = document.getElementById("order_type");
+	orderType.onchange = function(){
+		document.getElementById("searchFrm").submit();
+	}
+
+
 	const openInsert = function(){
 		let newWin = window.open("<%=request.getContextPath()%>/boardInsert","_blank","width=300,height=300");
 		let timer = setInterval(function(){
