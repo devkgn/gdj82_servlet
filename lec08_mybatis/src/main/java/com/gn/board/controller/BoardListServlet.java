@@ -25,6 +25,9 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Board option = new Board();
 		
+		String orderType = request.getParameter("order_type");
+		option.setOrder_type(orderType);
+		
 		String boardTitle = request.getParameter("board_title");
 		option.setBoard_title(boardTitle);
 		
