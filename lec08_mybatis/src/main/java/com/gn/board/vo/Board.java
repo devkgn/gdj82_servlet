@@ -1,6 +1,7 @@
 package com.gn.board.vo;
 
 import java.util.Date;
+import java.util.List;
 
 import com.gn.common.Paging;
 
@@ -21,4 +22,15 @@ public class Board extends Paging{
 	private String board_content;
 	private Date reg_date;
 	private String order_type = "1";
+	private List<String> bad_word;
 }
+
+
+
+
+
+
+
+
+
+

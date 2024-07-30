@@ -1,6 +1,7 @@
 package com.gn.board.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,6 +26,12 @@ public class BoardListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Board option = new Board();
 		
+		List<String> arr = new ArrayList<String>();
+		arr.add("a");
+		arr.add("b");
+		arr.add("c");
+		option.setBad_word(arr);
+	
 		String orderType = request.getParameter("order_type");
 		option.setOrder_type(orderType);
 		
