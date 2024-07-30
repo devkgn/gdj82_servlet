@@ -9,6 +9,7 @@
 <title>게시판 목록</title>
 </head>
 <body>
+	<input type="button" value="등록" onclick="openInsert();">
 	<table border="1">
 		<thead>
 			<tr>
@@ -59,6 +60,10 @@
 		</div>
 	</c:if>
 <script>
+	const openInsert = function(){
+		let newWin = window.open("<%=request.getContextPath()%>/boardInsert","_blank","width=300,height=300");
+	}
+
 	const tds = document.querySelectorAll("table tr td:not(:last-child)");
 	for(let i = 0 ; i < tds.length ; i++){
 		tds[i].onclick = function(){
@@ -74,6 +79,12 @@
 		xhr.onreadystatechange = function(){
 			if(xhr.readyState == 4 && xhr.status == 200){
 				const resp = xhr.responseText;
+				if(resp == '200'){
+					alert("게시글이 정상적으로 삭제되었습니다.");
+					location.href="<%=request.getContextPath()%>/boardList";
+				} else{
+					alert("게시글 삭제중 오류가 발생하였습니다.");
+				}
 			}
 		}
 		xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=UTF-8");

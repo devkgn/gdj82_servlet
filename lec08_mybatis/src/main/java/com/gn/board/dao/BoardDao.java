@@ -8,6 +8,10 @@ import com.gn.board.vo.Board;
 
 public class BoardDao {
 	
+	public int deleteBoard(SqlSession session,int boardNo) {
+		return session.delete("boardMapper.deleteBoard",boardNo);
+	}
+	
 	public int updateBoard(SqlSession session,Board vo) {
 		return session.update("boardMapper.updateBoard",vo);
 	}

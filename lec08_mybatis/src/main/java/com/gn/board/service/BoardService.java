@@ -11,6 +11,13 @@ import com.gn.board.vo.Board;
 
 public class BoardService {
 	
+	public int deleteBoard(int boardNo) {
+		SqlSession session = getSqlSession();
+		int result = new BoardDao().deleteBoard(session,boardNo);
+		session.close();
+		return result;
+	}
+	
 	public int updateBoard(Board vo) {
 		SqlSession session = getSqlSession();
 		int result = new BoardDao().updateBoard(session,vo);
