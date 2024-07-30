@@ -1,11 +1,14 @@
 package com.gn.board.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.gn.board.service.BoardService;
 
 @WebServlet("/boardDelete")
 public class BoardDeleteServlet extends HttpServlet {
@@ -17,6 +20,18 @@ public class BoardDeleteServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int boardNo = Integer.parseInt(request.getParameter("boardNo"));
+		
+		int result = new BoardService().deleteBoard(boardNo);
+		// 데이터베이스에서 게시글 삭제
+		// 삭제 성공 -> 목록 화면 이동
+		// 삭제 실패 -> 게시글 삭제 중 오류가 발생하였습니다. alert창 띄우기
+		
+		String resp_code = "500";
+		if(result>0) {
+			resp_code = "200";
+		}
+		response.setContentType("text/html;charset=utf-8");
+		response.getWriter().append(resp_code);
 		
 	}
 
