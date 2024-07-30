@@ -3,6 +3,14 @@
 "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="boardMapper">
+	<update id="updateBoard" parameterType="com.gn.board.vo.Board">
+		UPDATE `board`
+		SET board_title = #{board_title}
+		,board_content = #{board_content}
+		WHERE board_no = #{board_no}
+	</update>
+
+
 	<select id="selectBoardOne" parameterType="_int" resultType="com.gn.board.vo.Board">
 		SELECT * 
 		FROM `board`
