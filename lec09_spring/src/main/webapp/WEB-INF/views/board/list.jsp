@@ -79,13 +79,13 @@
 					<div class="center">
 					  <div class="pagination">
 					  	<c:if test="${paging.prev}">
-					  		<a href="<c:url value='/board?nowPage=${paging.pageBarStart-1}&board_title=${paging.board_title}'/>">&laquo;</a>
+					  		<a href="<c:url value='/board?nowPage=${paging.pageBarStart-1}&search_type=${paging.search_type}&search_text=${paging.search_text}'/>">&laquo;</a>
 					  	</c:if>
 					  	<c:forEach begin="${paging.pageBarStart}" end="${paging.pageBarEnd}" var="idx">
-					  		<a href="<c:url value='/board?nowPage=${idx}&board_title=${paging.board_title}'/>" <c:out value="${paging.nowPage == idx ? 'class=active' : '' }"/>>${idx}</a>
+					  		<a href="<c:url value='/board?nowPage=${idx}&search_type=${paging.search_type}&search_text=${paging.search_text}'/>" <c:out value="${paging.nowPage == idx ? 'class=active' : '' }"/>>${idx}</a>
 					  	</c:forEach>
 						<c:if test="${paging.next}">
-						  <a href="<c:url value='/board?nowPage=${paging.pageBarEnd+1}&board_title=${paging.board_title}'/>">&raquo;</a>
+						  <a href="<c:url value='/board?nowPage=${paging.pageBarEnd+1}&search_type=${paging.search_type}&search_text=${paging.search_text}'/>">&raquo;</a>
 						</c:if>
 					  </div>
 					</div>
