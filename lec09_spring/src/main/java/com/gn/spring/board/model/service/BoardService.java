@@ -15,10 +15,10 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
-	public int selectBoardCount() {
+	public int selectBoardCount(Board option) {
 		int result = 0;
 		try {
-			result = boardDao.selectBoardCount();
+			result = boardDao.selectBoardCount(option);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
