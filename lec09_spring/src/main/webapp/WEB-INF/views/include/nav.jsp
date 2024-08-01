@@ -18,10 +18,20 @@
 			</ul>
 		</div>
 		<div class="search">
-			<form>
-				<input type="text">
-				<input type="button" value="검색">
+			<form action="/board" method="get">
+				<input type="text" name="board_title" placeholder="검색어를 입력하세요.">
+				<input type="submit" value="검색">
 			</form>
 		</div>
 	</div>
 </nav>	 
+
+
+
+
+
+
+
+
+
+
