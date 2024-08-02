@@ -49,7 +49,7 @@ public class BoardViewController {
 	}
 	
 	@GetMapping("/board/create")
-	public String createBoardPate() {
+	public String createBoardPage() {
 		// /WEB-INF/views/board/create.jsp
 		return "/board/create";
 	}

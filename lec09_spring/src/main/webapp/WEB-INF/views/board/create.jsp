@@ -59,9 +59,19 @@
 				alert(vali_text);
 			} else{
 				// fetch 작업 
-				alert('작업 준비 완료!');
+				const payload = new FormData(form);
+				fetch('<%=request.getContextPath()%>/board',{
+					method : 'POST',
+					body : payload
+				})
+				.then(response => response.json())
+				.then(data => {
+					alert(data);
+				})
 			}
 			
+			
+	
 			
 			
 		});
