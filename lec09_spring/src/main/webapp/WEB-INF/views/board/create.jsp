@@ -66,7 +66,10 @@
 				})
 				.then(response => response.json())
 				.then(data => {
-					alert(data);
+					alert(data.res_msg);
+					if(data.res_code == '200'){
+						location.href="<%=request.getContextPath()%>/board";
+					}
 				})
 			}
 			

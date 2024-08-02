@@ -15,6 +15,26 @@ public class BoardService {
 	@Autowired
 	BoardDao boardDao;
 	
+	public Board selectBoardOne(int board_no) {
+		Board vo = null;
+		try {
+			vo = boardDao.selectBoardOne(board_no);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return vo;
+	}
+	
+	public int createBoard(Board vo) {
+		int result = 0;
+		try {
+			result = boardDao.createBoard(vo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public int selectBoardCount(Board option) {
 		int result = 0;
 		try {
