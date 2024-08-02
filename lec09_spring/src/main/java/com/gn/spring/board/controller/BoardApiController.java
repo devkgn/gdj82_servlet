@@ -2,6 +2,7 @@ package com.gn.spring.board.controller;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -24,10 +25,10 @@ public class BoardApiController {
 	public Map<String,String> createBoard(Board vo,
 			@RequestParam("file") MultipartFile file){
 		
-		LOGGER.info("Board 데이터 : "+vo);
-		LOGGER.info("file 데이터 :" +file.getOriginalFilename());
+//		LOGGER.info("Board 데이터 : "+vo);
+//		LOGGER.info("file 데이터 :" +file.getOriginalFilename());
 		
-		// 1. 파일을 저장
+		
 		// 2. 게시글 정보, 파일 정보 DB에 등록
 		// 3. 결과를 json 형태로 화면에 전달
 		Map<String,String> resultMap = new HashMap<String,String>();
