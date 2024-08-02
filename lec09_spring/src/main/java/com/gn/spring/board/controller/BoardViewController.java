@@ -65,6 +65,15 @@ public class BoardViewController {
 		return "/board/detail";
 	}
 	
+	@GetMapping("/board/update/{board_no}")
+	public String updateBoard(@PathVariable("board_no") int board_no,
+			Model model) {
+		Board vo = boardService.selectBoardOne(board_no);
+		model.addAttribute("vo",vo);
+		return "/board/update";
+	}
+	
+	
 	
 	
 
