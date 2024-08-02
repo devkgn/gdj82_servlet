@@ -47,5 +47,14 @@ public class BoardViewController {
 		// /WEB-INF/views/board/list.jsp
 		return "/board/list";
 	}
+	
+	@GetMapping("/board/create")
+	public String createBoardPate() {
+		// /WEB-INF/views/board/create.jsp
+		return "/board/create";
+	}
+	
+	
+	
 
 }
