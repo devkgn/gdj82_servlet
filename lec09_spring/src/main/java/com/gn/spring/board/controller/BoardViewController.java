@@ -17,9 +17,7 @@ public class BoardViewController {
 	
 	@Autowired
 	BoardService boardService;
-	
-	private static final Logger LOGGER = LogManager.getLogger(BoardViewController.class);
-	
+		
 	
 	// 화면단에 데이터 보내는 방법
 	// 1. ModelAndView 
@@ -39,7 +37,6 @@ public class BoardViewController {
 		option.setTotalData(boardService.selectBoardCount(option));
 		
 		List<Board> resultList = boardService.selectBoardList(option);
-		LOGGER.info(resultList);
 		
 		// 2. Model (매개변수 설정!!)
 		model.addAttribute("resultList", resultList);
@@ -58,7 +55,6 @@ public class BoardViewController {
 	@GetMapping("/board/{board_no}")
 	public String selectBoardOne(@PathVariable("board_no") int board_no,
 			Model model) {
-		LOGGER.info("게시글 PK : "+board_no);
 		Board vo = boardService.selectBoardOne(board_no);
 		model.addAttribute("vo",vo);
 		// WEB-INF/views/board/detail.jsp
