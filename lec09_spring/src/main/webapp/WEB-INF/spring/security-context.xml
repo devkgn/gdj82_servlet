@@ -16,10 +16,13 @@
 	<!-- <http auto-config="true" use-expressions="false">
 		<intercept-url pattern="/board/**" access="ROLE_USER"/>
 	</http> -->
-	<http pattern="/" security="none"/>
-	<http pattern="/resources/**" security="none" />
+	<!-- <http pattern="/" security="none"/>
+	<http pattern="/resources/**" security="none" /> -->
 	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/" access="permitAll()"/>
+		<intercept-url pattern="/resources/**" access="permitAll()"/>
 		<intercept-url pattern="/board/**" access="isAuthenticated()"/>
+		<intercept-url pattern="/join" access="permitAll()"/>
 	<!-- 
 		* 로그인 페이지 관련 속성 설정
 		login-page : 로그인 화면 전환 url

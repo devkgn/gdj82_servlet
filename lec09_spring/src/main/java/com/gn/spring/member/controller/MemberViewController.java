@@ -11,4 +11,9 @@ public class MemberViewController {
 		// WEB-INF/views/member/login.jsp
 		return "member/login";
 	}
+	
+	@GetMapping("/join")
+	public String joinPage() {
+		return "member/join";
+	}
 }
