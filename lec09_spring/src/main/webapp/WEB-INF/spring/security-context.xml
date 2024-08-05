@@ -67,6 +67,12 @@
 		</authentication-provider>
 	</authentication-manager>	
 	
+	<beans:bean id="customHttpFirewall" 
+	class="org.springframework.security.web.firewall.StrictHttpFirewall">
+		<beans:property name="allowSemicolon" value="true"/>
+	</beans:bean>
+	<http-firewall ref="customHttpFirewall"/>
+	
 	
 	
 </beans:beans>
