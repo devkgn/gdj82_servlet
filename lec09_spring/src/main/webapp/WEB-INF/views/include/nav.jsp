@@ -2,6 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
 <link href='<c:url value="/resources/css/include/nav.css"/>' rel="stylesheet" type="text/css">
+<style>
+	#nav_wrap .menu form input[type='submit']{
+	  border: 0;
+	  background-color: transparent;
+	  cursor : pointer;
+	}
+</style>
 <nav>
 	<div id="nav_wrap">
 		<div class="menu">
@@ -13,7 +20,10 @@
 					<a href="#">회원가입</a>
 				</li>
 				<li>
-					<a href="<c:url value='/board'/> ">게시판</a>
+					<form method="post" action="/logout">
+						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+						<input type="submit" value="로그아웃">
+					</form>
 				</li>
 			</ul>
 		</div>

@@ -34,6 +34,19 @@
 	 	password-parameter="user_pw"
 	 	default-target-url="/"
 	 	authentication-failure-url="/loginPage"/>
+	 	
+	 	<!-- 
+	 		* 로그아웃 관련 설정 
+	 		logout-url : 로그아웃 url 설정
+	 		logout-success-url : 로그아웃 성공시 이동할 url 설정
+	 		invalidate-session : 로그아웃 성공시 세션의 연결을 끊을지 설정(true)
+	 		delte-cookie : 로그아웃 성공시 삭제할 쿠키 이름 설정
+	 	-->
+	 	<logout
+	 	logout-url ="/logout"
+	 	logout-success-url ="/"
+	 	delete-cookies="JESSIONID"/>
+	 	
 	</http>
 	
 

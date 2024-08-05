@@ -12,5 +12,29 @@ rel="stylesheet" type="text/css"/>
 <body>
 	<jsp:include page="../include/header.jsp"/>
 	<jsp:include page="../include/nav.jsp"/>
+	<section>
+		<div id="section_wrap">
+			<div class="word">
+				<h3>로그인</h3>
+			</div>
+			<div class="login_form">
+				<form action="<c:url value='/login'/>" method="post">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+					<input type="text" name="user_id"><br>
+					<input type="password" name="user_pw"><br>
+					<input type="submit" value="로그인">
+				</form>
+			</div>
+		</div>
+	</section>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
