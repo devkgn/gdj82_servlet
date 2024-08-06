@@ -22,6 +22,8 @@ rel="stylesheet" type="text/css"/>
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 					<input type="text" name="user_id"><br>
 					<input type="password" name="user_pw"><br>
+					<input type="checkbox" name="remember-me" id="remember-me">
+					<label for="remember-me">로그인 유지</label><br>
 					<input type="submit" value="로그인">
 				</form>
 			</div>

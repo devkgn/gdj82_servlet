@@ -55,7 +55,14 @@
 	 	<logout
 	 	logout-url ="/logout"
 	 	logout-success-url ="/"
-	 	delete-cookies="JESSIONID"/>
+	 	delete-cookies="JESSIONID, remember-me"/>
+	 	
+	 	<!-- 
+	 		token-validity-seconds : 쿠키 지속 시간
+	 	 -->
+	 	<remember-me
+	 		token-validity-seconds="604800"
+	 		data-source-ref="dataSource"/>
 	 	
 	</http>
 	
