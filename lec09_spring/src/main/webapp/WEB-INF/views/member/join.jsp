@@ -35,6 +35,8 @@
 		form.addEventListener('submit',(e)=>{
 			e.preventDefault();
 			
+			// 유효성 검사 추가
+			
 			let object = {};
 			const payload = new FormData(form);
 			payload.forEach(function(value,key){

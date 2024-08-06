@@ -52,8 +52,9 @@
 	 	
 	</http>
 	
-
-
+	<!-- Spring Security에서 비밀번호 암호화 로직 담당 Bean 등록 -->
+	<beans:bean id="bcryptPassword"
+	class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	
 	<!-- 
 		* authentication-manager : AuthenticationManager 설정
