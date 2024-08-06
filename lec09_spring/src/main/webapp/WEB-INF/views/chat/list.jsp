@@ -62,7 +62,7 @@
 		// http 프로토콜을 이용 : ws
 		// https 프로토콜을 이용 : wss
 		const websocket 
-		= new Websocket("ws://localhost:8092/<%=request.getContextPath()%>/chatting");
+		= new WebSocket("ws://localhost:8092/<%=request.getContextPath()%>chatting");
 	
 		// 2. 서버에 접속이 되었을 때 실행될 함수
 		websocket.onopen = (data) =>{
@@ -81,7 +81,15 @@
 		
 		// 5. 버튼을 클릭하면 양방향 통신 시작
 		document.getElementById("send_btn").addEventListener('click',function(){
-			
+			const msg = document.getElementById("txt_msg").value;
+			const sender = document.getElementById("sender_no").value;
+			const receiver = document.getElementById("receiver_no").value;
+			const obj = {
+				chat_msg : msg,
+				sender_no : sender,
+				receiver_no : receiver
+			};
+			websocket.send(JSON.stringify(obj));
 		});
 	
 	</script>
