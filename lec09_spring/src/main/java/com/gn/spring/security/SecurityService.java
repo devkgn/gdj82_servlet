@@ -20,6 +20,10 @@ public class SecurityService implements UserDetailsService{
 		// 실제 데이터베이스에서 회원 정보를 조회
 		// 조회한 회원 정보를 User 형태로 변환해서 제공
 		Member member = memberDao.selectMemberById(username);
+		if(member != null) {
+			return new SecurityUser(member);
+		}
+		return null;
 	}
 
 }
