@@ -20,5 +20,9 @@ public class MemberDao {
 		// 5. 서버 실행해서 화면에 resultMap 출력 확인
 		return sqlSession.insert("memberMapper.createMember",vo);
 	}
+	
+	public Member selectMemberById(String user_id) {
+		return sqlSession.selectOne("memberMapper.selectMemberById",user_id);
+	}
 
 }
