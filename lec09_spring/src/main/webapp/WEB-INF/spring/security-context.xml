@@ -41,6 +41,10 @@
 	 	default-target-url="/"
 	 	authentication-failure-url="/loginPage"/>
 	 	
+	 	 <!-- 1.authentication-failure-url 수정(에러페이지 화면 전환)
+	 	 2. com.gn.spring.common.Error 클래스 생성 -> Controller지정 
+	 	 3. views/error/404.jsp 페이지 생성-->
+	 	
 	 	<!-- 
 	 		* 로그아웃 관련 설정 
 	 		logout-url : 로그아웃 url 설정
