@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security"
     xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
     https://www.springframework.org/schema/beans/spring-beans.xsd
     http://www.springframework.org/schema/security 
-    http://www.springframework.org/schema/security/spring-security.xsd">
+    http://www.springframework.org/schema/security/spring-security.xsd
+    http://www.springframework.org/schema/context 
+    https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<!-- 
 		* http : 필터를 적용할 실질적 경로 설정
@@ -62,14 +65,23 @@
 		user-service : 간단하게 UserDetails 정보를 설정 할 수 있음
 				password 앞에 {noop} 사용 -> 암호화 없이 시큐리티 동작 확인 가능
 	 -->
-	<authentication-manager>
+	 <context:annotation-config/>
+	 <context:component-scan base-package="com.gn.spring"/>
+	 
+	 <authentication-manager>
+	 	<authentication-provider user-service-ref="loginService">
+	 		<password-encoder ref="bcryptPassword"/>
+	 	</authentication-provider>
+	 </authentication-manager>
+	 
+<!-- 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
 				<user name="admin" password="{noop}admin" authorities="ROLE_ADMIN"/>
 				<user name="user" password="{noop}user" authorities="ROLE_USER"/>
 			</user-service>
 		</authentication-provider>
-	</authentication-manager>	
+	</authentication-manager> -->	
 	
 	<beans:bean id="customHttpFirewall" 
 	class="org.springframework.security.web.firewall.StrictHttpFirewall">

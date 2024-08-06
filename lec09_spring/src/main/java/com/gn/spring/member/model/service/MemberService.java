@@ -24,7 +24,7 @@ public class MemberService {
 //			String ori_pw = vo.getUser_pw();
 //			String encode_pw = bcryptPasswordEncoder.encode(ori_pw);
 //			vo.setUser_pw(encode_pw);
-
+			
 			result = memberDao.createMember(vo);
 		}catch(Exception e) {
 			e.printStackTrace();
