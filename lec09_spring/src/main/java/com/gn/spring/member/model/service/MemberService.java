@@ -1,5 +1,7 @@
 package com.gn.spring.member.model.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,10 @@ public class MemberService {
 	
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	public List<Member> selectMemberNotSender(int sender_no){
+		
+	}
 	
 	public int createMember(Member vo) {
 		int result = 0;
