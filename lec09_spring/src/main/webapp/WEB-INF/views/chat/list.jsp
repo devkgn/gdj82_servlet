@@ -44,9 +44,14 @@
 				-->
 				<label for="receiver_no">대화상대</label>
 				<select id="receiver_no">
-					<option value="3">admin</option>
-					<option value="4">user01</option>
-					<option value="5">user02</option>
+					<sec:authentication property="principal.member.user_no" var="sender_no"/>
+					<c:out value="${sender_no}"/>
+					<c:if test="${sender_no == '3'}">
+						<option value="4">user01</option>
+					</c:if>
+					<c:if test="${sender_no == '4'}">
+						<option value="3">admin</option>
+					</c:if>
 				</select><br>
 				<textarea id="txt_msg" rows="3" placeholder="채팅 입력하기"></textarea><br>
 				<input type="hidden" id="sender_no" value="<sec:authentication property="principal.member.user_no"/>">
