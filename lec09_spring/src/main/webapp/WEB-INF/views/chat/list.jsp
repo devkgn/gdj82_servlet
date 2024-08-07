@@ -43,7 +43,8 @@
 					2. 대화상대의 user_no 정보를 value에 작성하세요.
 				-->
 				<label for="receiver_no">대화상대</label>
-				<select id="receiver_no">
+				<input type="text" value="${receiver_no}" id="receiver_no"/>
+				<%-- <select id="receiver_no">
 					<sec:authentication property="principal.member.user_no" var="sender_no"/>
 					<c:out value="${sender_no}"/>
 					<c:if test="${sender_no == '3'}">
@@ -52,7 +53,7 @@
 					<c:if test="${sender_no == '4'}">
 						<option value="3">admin</option>
 					</c:if>
-				</select>
+				</select> --%>
 				<br>
 				<textarea id="txt_msg" rows="3" placeholder="채팅 입력하기"></textarea>
 				<br>

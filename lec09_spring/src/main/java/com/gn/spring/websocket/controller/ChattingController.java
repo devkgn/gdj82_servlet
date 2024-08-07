@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -17,10 +18,17 @@ public class ChattingController {
 	MemberService memberService;
 	
 	@GetMapping("/chattingPage/{sender_no}")
-	public String chattingPage(@PathVariable("sender_no") int sender_no) {
+	public String chattingPage(@PathVariable("sender_no") int sender_no,Model model) {
 		//return "chat/list";
 		List<Member> resultList = memberService.selectMemberNotSender(sender_no);
+		model.addAttribute("resultList",resultList);
 		return "chat/selectUser";
+	}
+	
+	@GetMapping("/chattingStart/{receiver_no}")
+	public String chattingStartPage(@PathVariable("receiver_no") int receiver_no,Model model) {
+		model.addAttribute("receiver_no",receiver_no);
+		return "chat/list";
 	}
 	
 }
