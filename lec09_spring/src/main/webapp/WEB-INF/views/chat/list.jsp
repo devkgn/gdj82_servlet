@@ -52,8 +52,10 @@
 					<c:if test="${sender_no == '4'}">
 						<option value="3">admin</option>
 					</c:if>
-				</select><br>
-				<textarea id="txt_msg" rows="3" placeholder="채팅 입력하기"></textarea><br>
+				</select>
+				<br>
+				<textarea id="txt_msg" rows="3" placeholder="채팅 입력하기"></textarea>
+				<br>
 				<input type="hidden" id="sender_no" value="<sec:authentication property="principal.member.user_no"/>">
 				<input type="button" id="send_btn" value="보내기">
 				<br>
@@ -70,19 +72,6 @@
 		const websocket 
 		= new WebSocket("ws://localhost:8092/<%=request.getContextPath()%>chatting");
 	
-		// 2. 서버에 접속이 되었을 때 실행될 함수
-		websocket.onopen = (data) =>{
-			// console.log("=== 접속 ===");
-			const receiver = document.getElementById("receiver_no").value;
-			const sender = document.getElementById('sender_no').value;
-			let obj = {
-				chat_type : 'open',
-				sender_no : sender,
-				receiver_no : receiver
-			};
-			websocket.send(JSON.stringify(obj));
-			
-		}
 		
 		// 3. 서버로부터 받아온 데이터를 처리하는 함수
 		websocket.onmessage = (response) =>{
@@ -91,6 +80,17 @@
 			if(resp.res_code == '200'){
 				if(resp.res_type == 'open'){
 					printMsg(resp.res_msg,'center');
+				} else if(resp.res_type == 'msg'){
+					// 메시지 보낸 사람과 지금 화면의 주인이 같은지
+					const senderInfo = resp.sender_info;
+					const hostPage = document.getElementById("sender_no").value;
+					
+					if(Number(senderInfo) == Number(hostPage)){
+						printMsg(resp.res_msg,'right');
+					}else{
+						printMsg(resp.res_msg,'left');
+					}
+					
 				}
 			} else{
 				alert(res_msg);
@@ -123,7 +123,31 @@
 				receiver_no : receiver
 			};
 			websocket.send(JSON.stringify(obj)); */
+			
+			const msg = document.getElementById("txt_msg").value;
+			const obj = setMsgObj('msg',msg);
+			websocket.send(JSON.stringify(obj));
 		});
+		// 2. 서버에 접속이 되었을 때 실행될 함수
+		websocket.onopen = (data) =>{
+			// console.log("=== 접속 ===");
+			const obj = setMsgObj("open",'');
+			websocket.send(JSON.stringify(obj));	
+		}
+		
+		// 객체 생성자 함수
+		let setMsgObj = function(chatType, chatMsg){
+			const sender = document.getElementById("sender_no").value;
+			const receiver = document.getElementById("receiver_no").value;
+			const obj = {
+				chat_type : chatType,
+				chat_msg : chatMsg,
+				sender_no : sender,
+				receiver_no : receiver
+			}
+			return obj;
+		}
+		
 	
 	</script>
 </body>
