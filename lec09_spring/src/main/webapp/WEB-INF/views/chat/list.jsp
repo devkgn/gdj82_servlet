@@ -68,11 +68,12 @@
 		// 2. 서버에 접속이 되었을 때 실행될 함수
 		websocket.onopen = (data) =>{
 			// console.log("=== 접속 ===");
-			
+			const receiver = document.getElementById("receiver_no").value;
 			const sender = document.getElementById('sender_no').value;
 			let obj = {
 				chat_type : 'open',
-				sender_no : sender
+				sender_no : sender,
+				receiver_no : receiver
 			};
 			websocket.send(JSON.stringify(obj));
 			
@@ -81,6 +82,24 @@
 		// 3. 서버로부터 받아온 데이터를 처리하는 함수
 		websocket.onmessage = (response) =>{
 			//console.log("=== 응답 ===");
+			const resp = JSON.parse(response.data);
+			if(resp.res_code == '200'){
+				if(resp.res_type == 'open'){
+					printMsg(resp.res_msg,'center');
+				}
+			} else{
+				alert(res_msg);
+			}	
+		}
+		
+		// 화면에 메시지 출력하는 함수
+		const printMsg = function(msg,loc){
+			const div = document.createElement("div");
+			const textNode = document.createTextNode(msg);
+			div.appendChild(textNode);
+			div.className += 'my_chat';
+			div.style.textAlign = loc;
+			document.getElementById("chat_container").appendChild(div);
 		}
 		
 		// 4. 서버에 접속이 끊겼을 때 실행될 함수

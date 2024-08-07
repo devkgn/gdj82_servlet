@@ -44,15 +44,18 @@ public class ChattingServer extends TextWebSocketHandler{
 				// 데이터베이스 추가 -> 성공
 				resultMap.put("res_code","200");
 				resultMap.put("res_msg",msg.getSender_no()+"님이 입장하셨습니다.");
-			break;
+				resultMap.put("res_type", "open");
+				break;
 		}
 		
 		TextMessage resultMsg 
 			= new TextMessage(objectMapper.writeValueAsString(resultMap));
 		
 		for(String no : clients.keySet()) {
-			if(no.equals()||no.equals()) {
-				
+			if(no.equals(msg.getSender_no())
+					||no.equals(msg.getReceiver_no())) {
+				WebSocketSession client = clients.get(no);
+				client.sendMessage(resultMsg);
 			}
 		}
 		
