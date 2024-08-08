@@ -10,6 +10,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.gn.spring.board.domain.BoardDto;
 import com.gn.spring.board.service.BoardService;
@@ -29,9 +30,9 @@ public class BoardViewController {
 	
 	@GetMapping("/board")
 	public String selectBoardList(Model model,
-			@PageableDefault(page=0, size = 10, sort="regDate", direction=Sort.Direction.DESC) 
-			Pageable pageable) {
-		Page<BoardDto> resultList = boardService.selectBoardList(pageable);
+			@PageableDefault(page=0, size = 10, sort="regDate", direction=Sort.Direction.DESC)Pageable pageable,
+			@ModelAttribute("searchDto")BoardDto searchDto) {
+		Page<BoardDto> resultList = boardService.selectBoardList(searchDto, pageable);
 		LOGGER.debug(resultList.toString());
 		model.addAttribute("resultList",resultList);
 		return "board/list";

@@ -23,8 +23,15 @@ public class BoardService {
 		this.boardRepository = boardRepository;
 	}
 
-	public Page<BoardDto> selectBoardList(Pageable pageable){
-		Page<Board> boardList = boardRepository.findAll(pageable);
+	public Page<BoardDto> selectBoardList(BoardDto searchDto, Pageable pageable){
+		Page<Board> boardList = null;
+		String boardTitle = searchDto.getBoard_title();
+		if(boardTitle != null && !"".equals(boardTitle)) {
+			
+		}else {
+			boardList = boardRepository.findAll(pageable);
+		}
+
 		List<BoardDto> boardDtoList = new ArrayList<BoardDto>();
 		for(Board b : boardList) {
 			BoardDto dto = new BoardDto().toDto(b);
