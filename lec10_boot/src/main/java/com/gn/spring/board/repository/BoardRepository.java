@@ -9,4 +9,6 @@ import com.gn.spring.board.domain.Board;
 public interface BoardRepository extends JpaRepository<Board, Long>{
 
 	Page<Board> findByboardTitleContaining(String keyword, Pageable pageable);
+	
+	Page<Board> findByboardContentContaining(String keyword, Pageable pageable);
 }
