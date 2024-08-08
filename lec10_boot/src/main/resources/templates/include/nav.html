@@ -15,9 +15,16 @@
 					</li>
 				</ul>
 			</div>
-			<div class="search">
+			<div class="search" th:if="${searchDto != null}">
+				<form th:action="@{/board}" th:object="${searchDto}" method="get">
+					<input type="text" name="board_title" 
+					th:field="*{board_title}" placeholder="검색어를 입력하세요">
+					<input type="submit" value="검색">
+				</form>
+			</div>
+			<div class="search" th:if="${searchDto == null}">
 				<form th:action="@{/board}" method="get">
-					<input type="text" name="board_title" placeholder="검색어를 입력하세요.">
+					<input type="text" name="board_title" placeholder="검색어를 입력하세요">
 					<input type="submit" value="검색">
 				</form>
 			</div>

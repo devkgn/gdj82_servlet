@@ -27,7 +27,7 @@ public class BoardService {
 		Page<Board> boardList = null;
 		String boardTitle = searchDto.getBoard_title();
 		if(boardTitle != null && !"".equals(boardTitle)) {
-			
+			boardList = boardRepository.findByboardTitleContaining(boardTitle, pageable);
 		}else {
 			boardList = boardRepository.findAll(pageable);
 		}
