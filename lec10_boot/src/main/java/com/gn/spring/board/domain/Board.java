@@ -2,6 +2,9 @@ package com.gn.spring.board.domain;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -37,9 +40,11 @@ public class Board {
 	private Long boardWriter;
 	
 	@Column(name="reg_date")
+	@CreationTimestamp
 	private LocalDateTime regDate;
 	
 	@Column(name="mod_date")
+	@UpdateTimestamp
 	private LocalDateTime modDate;
 	
 	@Column(name="ori_thumbnail")

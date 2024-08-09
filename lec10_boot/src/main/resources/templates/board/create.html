@@ -36,10 +36,29 @@
 					})
 					.then(response => response.json())
 					.then(data=>{
-						alert(data.res_msg);
+						
+						/* alert(data.res_msg);
 						if(data.res_code == '200'){
 							location.href="/board";
+						} */
+						
+						if(data.res_code == '200'){
+							Swal.fire({
+								icon :'success',
+								title:'성공',
+								text : data.res_msg
+							}).then((result)=>{
+								location.href="/board";
+							});
+						} else{
+							Swal.fire({
+								icon:'error',
+								title:'실패',
+								text: data.res_msg
+							});
 						}
+						
+						
 					})
 				}
 			});

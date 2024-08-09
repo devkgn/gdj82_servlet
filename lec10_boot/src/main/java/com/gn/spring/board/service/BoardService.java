@@ -23,8 +23,9 @@ public class BoardService {
 		this.boardRepository = boardRepository;
 	}
 	
-	public void createBoard(BoardDto dto) {
-		
+	public Board createBoard(BoardDto dto) {
+		Board board = dto.toEntity();
+		return boardRepository.save(board);
 	}
 
 	public Page<BoardDto> selectBoardList(BoardDto searchDto, Pageable pageable){

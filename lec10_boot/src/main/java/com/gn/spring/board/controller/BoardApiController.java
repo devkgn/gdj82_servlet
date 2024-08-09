@@ -30,7 +30,7 @@ public class BoardApiController {
 	@ResponseBody
 	@PostMapping("/board")
 	public Map<String,String> createBoard(BoardDto dto,
-			@RequestParam("file")MultipartFile file){
+			@RequestParam("file") MultipartFile file){
 		Map<String,String> resultMap = new HashMap<String,String>();
 		resultMap.put("res_code", "404");
 		resultMap.put("res_msg", "게시글 등록중 오류가 발생했습니다.");
@@ -39,11 +39,13 @@ public class BoardApiController {
 		if(savedFileName != null) {
 			dto.setOri_thumbnail(file.getOriginalFilename());
 			dto.setNew_thumbnail(savedFileName);
-			if(boardService.createBoard(dto) > 0) {
-				
+			if(boardService.createBoard(dto) != null) {
+				resultMap.put("res_code", "200");
+				resultMap.put("res_msg", "게시글이 성공적으로 등록되었습니다.");
 			}
+		}else {
+			resultMap.put("res_msg", "파일 업로드가 실패하였습니다.");
 		}
-		
 		return resultMap;
 	}
 
