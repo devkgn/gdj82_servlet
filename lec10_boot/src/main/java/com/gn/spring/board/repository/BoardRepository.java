@@ -21,4 +21,9 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 					"WHERE b.boardTitle LIKE CONCAT('%',?1,'%') "+
 					"OR b.boardContent LIKE CONCAT('%',?1,'%') ")
 	Page<Board> findByboardTitleOrboardContentContaining(String keyword, Pageable pageable);
+
+	Board findByboardNo(Long boardNo);
+
+
 }
+
