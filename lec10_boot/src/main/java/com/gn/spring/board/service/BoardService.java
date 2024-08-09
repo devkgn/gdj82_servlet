@@ -24,7 +24,15 @@ public class BoardService {
 	}
 	
 	public Board updateBoard(BoardDto dto) {
-		Board board = dto.toEntity();
+		BoardDto temp = selectBoardOne(dto.getBoard_no());
+		temp.setBoard_title(dto.getBoard_title());
+		temp.setBoard_content(dto.getBoard_content());
+		if(dto.getOri_thumbnail() != null
+				&& "".equals(dto.getOri_thumbnail()) == false) {
+			temp.setOri_thumbnail(dto.getOri_thumbnail());
+			temp.setNew_thumbnail(dto.getNew_thumbnail());
+		}
+		Board board = temp.toEntity();
 		Board result = boardRepository.save(board);
 		return result;
 	}
