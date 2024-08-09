@@ -23,6 +23,12 @@ public class BoardService {
 		this.boardRepository = boardRepository;
 	}
 	
+	public Board updateBoard(BoardDto dto) {
+		Board board = dto.toEntity();
+		Board result = boardRepository.save(board);
+		return result;
+	}
+	
 	public BoardDto selectBoardOne(Long board_no) {
 		Board board = boardRepository.findByboardNo(board_no);
 		BoardDto dto = new BoardDto().toDto(board);
