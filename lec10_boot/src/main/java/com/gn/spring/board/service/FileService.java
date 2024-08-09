@@ -1,15 +1,58 @@
 package com.gn.spring.board.service;
 
 import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.ContentDisposition;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.gn.spring.board.domain.Board;
+import com.gn.spring.board.repository.BoardRepository;
 
 @Service
 public class FileService {
 	
 	private String fileDir = "C:\\board\\upload\\";
+	
+	private final BoardRepository boardRepository;
+	
+	@Autowired
+	public FileService(BoardRepository boardRepository) {
+		this.boardRepository = boardRepository;
+	}
+	
+	public ResponseEntity<Object> download(Long board_no){
+		try {
+			Board b = boardRepository.findByboardNo(board_no);
+			
+			String newFileName = b.getNewThumbnail();
+			String oriFileName = b.getOriThumbnail();
+			String downDir = fileDir+newFileName;
+			
+			Path filePath = Paths.get(downDir);
+			Resource resource = new InputStreamResource(Files.newInputStream(filePath));
+			
+			File file = new File(downDir);
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentDisposition(ContentDisposition.builder("attachment").filename(oriFileName).build());
+			
+			return new ResponseEntity<Object>(resource, headers, HttpStatus.OK);
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			return new ResponseEntity<Object>(null,HttpStatus.CONFLICT);
+		}
+	}
 
 	public String upload(MultipartFile file) {
 		
