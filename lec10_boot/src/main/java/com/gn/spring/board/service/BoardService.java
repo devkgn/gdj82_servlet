@@ -8,10 +8,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+//둘중에 뭘 써도 상관없음
+//import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gn.spring.board.domain.Board;
 import com.gn.spring.board.domain.BoardDto;
 import com.gn.spring.board.repository.BoardRepository;
+
 
 @Service
 public class BoardService {
@@ -23,8 +27,10 @@ public class BoardService {
 		this.boardRepository = boardRepository;
 	}
 	
+	@Transactional
 	public Board updateBoard(BoardDto dto) {
 		BoardDto temp = selectBoardOne(dto.getBoard_no());
+		
 		temp.setBoard_title(dto.getBoard_title());
 		temp.setBoard_content(dto.getBoard_content());
 		if(dto.getOri_thumbnail() != null
@@ -33,6 +39,7 @@ public class BoardService {
 			temp.setNew_thumbnail(dto.getNew_thumbnail());
 		}
 		Board board = temp.toEntity();
+		
 		Board result = boardRepository.save(board);
 		return result;
 	}
