@@ -22,6 +22,10 @@ public class BoardService {
 	public BoardService(BoardRepository boardRepository) {
 		this.boardRepository = boardRepository;
 	}
+	
+	public void createBoard(BoardDto dto) {
+		
+	}
 
 	public Page<BoardDto> selectBoardList(BoardDto searchDto, Pageable pageable){
 		Page<Board> boardList = null;

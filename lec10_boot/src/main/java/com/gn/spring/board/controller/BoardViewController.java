@@ -38,4 +38,9 @@ public class BoardViewController {
 		model.addAttribute("searchDto",searchDto);
 		return "board/list";
 	}
+	
+	@GetMapping("/board/create")
+	public String createBoardPage() {
+		return "board/create";
+	}
 }
