@@ -1,5 +1,9 @@
 package com.gn.spring.member.domain;
 
+import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -20,6 +24,8 @@ public class MemberDto {
 	private String mem_pw;
 	private String mem_name;
 	private String mem_auth;
+	
+	private List<GrantedAuthority> authorities;
 	
 	public Member toEntity() {
 		return Member.builder()
