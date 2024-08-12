@@ -51,12 +51,22 @@ public class BoardService {
 	
 	public BoardDto selectBoardOne(Long board_no) {
 		Board board = boardRepository.findByboardNo(board_no);
-		BoardDto dto = new BoardDto().toDto(board);
+		// BoardDto dto = new BoardDto().toDto(board);
+		BoardDto dto = BoardDto.builder()
+				.board_title(board.getBoardTitle())
+				.board_content(board.getBoardContent())
+				.ori_thumbnail(board.getOriThumbnail())
+				.new_thumbnail(board.getNewThumbnail())
+				.reg_date(board.getRegDate())
+				.mod_date(board.getModDate())
+				.board_writer_no(board.getMember().getMemNo())
+				.board_writer_name(board.getMember().getMemName())
+				.build();
 		return dto;
 	}
 	
 	public Board createBoard(BoardDto dto) {
-		Long boardWriter = dto.getBoard_writer(); 
+		Long boardWriter = dto.getBoard_writer_no(); 
 		Member member = memberRepository.findBymemNo(boardWriter);
 		 //Board board = dto.toEntity();
 		Board board = Board.builder()
