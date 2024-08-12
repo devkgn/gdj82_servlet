@@ -72,11 +72,13 @@ public class BoardApiController {
 			if(savedFileName != null) {
 				dto.setOri_thumbnail(file.getOriginalFilename());
 				dto.setNew_thumbnail(savedFileName);
+				if(fileService.delete(dto.getBoard_no()) > 0) {
+					resultMap.put("res_msg", "기존 파일이 정상적으로 삭제되었습니다.");
+				}
 			} else {
 				resultMap.put("res_msg", "파일 업로드가 실패하였습니다.");
 			}
 		}
-		
 		if(boardService.updateBoard(dto) != null) {
 			resultMap.put("res_code","200");
 			resultMap.put("res_msg", "게시글이 성공적으로 수정되었습니다.");
