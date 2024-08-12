@@ -16,6 +16,14 @@ public class WebSecurityConfig {
 		http.authorizeHttpRequests(requests -> 
 				requests.requestMatchers("/").permitAll()
 						.requestMatchers("/board/**").authenticated())
+			.formLogin(login -> 
+				login.loginPage("/login")
+					.loginProcessingUrl("/login")
+					.usernameParameter("mem_id")
+					.passwordParameter("mem_pw")
+					.permitAll()
+					.successHandler(new MyLoginSuccessHandler())
+					.failureHandler(new MyLoginFailureHandler()))
 			.httpBasic(Customizer.withDefaults());
 		return http.build();
 	}
