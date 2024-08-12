@@ -15,16 +15,21 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gn.spring.board.domain.Board;
 import com.gn.spring.board.domain.BoardDto;
 import com.gn.spring.board.repository.BoardRepository;
+import com.gn.spring.member.domain.Member;
+import com.gn.spring.member.repository.MemberRepository;
 
 
 @Service
 public class BoardService {
 	
 	private final BoardRepository boardRepository;
+	private final MemberRepository memberRepository;
 	
 	@Autowired
-	public BoardService(BoardRepository boardRepository) {
+	public BoardService(BoardRepository boardRepository,
+			MemberRepository memberRepository) {
 		this.boardRepository = boardRepository;
+		this.memberRepository = memberRepository;
 	}
 	
 	@Transactional
@@ -51,7 +56,17 @@ public class BoardService {
 	}
 	
 	public Board createBoard(BoardDto dto) {
-		Board board = dto.toEntity();
+		Long boardWriter = dto.getBoard_writer(); 
+		Member member = memberRepository.findBymemNo(boardWriter);
+		 //Board board = dto.toEntity();
+		Board board = Board.builder()
+				.boardTitle(dto.getBoard_title())
+				.boardContent(dto.getBoard_content())
+				.oriThumbnail(dto.getOri_thumbnail())
+				.newThumbnail(dto.getNew_thumbnail())
+				.member(member)
+				.build();
+				
 		return boardRepository.save(board);
 	}
 
