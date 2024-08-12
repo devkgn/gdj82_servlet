@@ -37,7 +37,7 @@
 							</tr>
 							<tr>
 								<td>수정일</td>
-								<td th:text="${#temporals.format(dto.mod_date, 'yy-MM-dd HH:mm:ss')}"></td>
+								<td th:text="${dto.mod_date != null} ? ${#temporals.format(dto.mod_date, 'yy-MM-dd HH:mm:ss')} : 수정전"></td>
 							</tr>
 						</table>
 					</li>

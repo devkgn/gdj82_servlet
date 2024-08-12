@@ -62,6 +62,7 @@ public class BoardService {
 				.board_writer_no(board.getMember().getMemNo())
 				.board_writer_name(board.getMember().getMemName())
 				.build();
+		
 		return dto;
 	}
 	
