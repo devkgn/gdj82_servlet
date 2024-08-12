@@ -99,4 +99,15 @@ public class BoardService {
 //		}
 //		return boardDtoList;
 	}
+	
+	public int deleteBoard(Long board_no) {
+		int result = 0;
+		try {
+			boardRepository.deleteById(board_no);	
+			result = 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 }
