@@ -57,6 +57,7 @@
 	</section>
 	<script>
 		const boardDelete = function(boardNo){
+			console.log(boardNo);
 			if(confirm("정말 삭제하시겠습니까?")){
 				fetch('/board/'+boardNo,{
 					method:'delete'

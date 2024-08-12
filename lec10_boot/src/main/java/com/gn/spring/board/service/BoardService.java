@@ -53,6 +53,7 @@ public class BoardService {
 		Board board = boardRepository.findByboardNo(board_no);
 		// BoardDto dto = new BoardDto().toDto(board);
 		BoardDto dto = BoardDto.builder()
+				.board_no(board.getBoardNo())
 				.board_title(board.getBoardTitle())
 				.board_content(board.getBoardContent())
 				.ori_thumbnail(board.getOriThumbnail())
