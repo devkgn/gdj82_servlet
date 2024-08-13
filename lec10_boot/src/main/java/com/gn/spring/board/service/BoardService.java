@@ -43,6 +43,14 @@ public class BoardService {
 			temp.setOri_thumbnail(dto.getOri_thumbnail());
 			temp.setNew_thumbnail(dto.getNew_thumbnail());
 		}
+//		Board board = Board.builder()
+//				.boardNo(temp.getBoard_no())
+//				.boardTitle(temp.getBoard_title())
+//				.boardContent(temp.getBoard_content())
+//				.oriThumbnail(temp.getOri_thumbnail())
+//				.newThumbnail(temp.getNew_thumbnail())
+//				.regDate(temp.getReg_date())
+//				.build();
 		Board board = temp.toEntity();
 		
 		Board result = boardRepository.save(board);

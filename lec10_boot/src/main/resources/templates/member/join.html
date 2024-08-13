@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+     xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+     layout:decorate="~{include/layout}">
+     <th:block layout:fragment="content">
+       	<link th:href="@{/css/member/join.css}" rel="stylesheet" type="text/css">
+		<section>
+			<div id="section_wrap">
+				<div class="word">
+					<h3>회원가입</h3>
+				</div><br>
+				<div class="create_account_form">
+					<input type="hidden" id="csrf_token" th:value="${_csrf.token}">
+					<form id="memberAddFrm">
+						<input type="text" name="mem_id" placeholder="아이디"> <br>
+						<input type="password" name="mem_pw" placeholder="비밀번호"> <br>
+						<input type="password" name="mem_pw_check" placeholder="비밀번호 확인"> <br>
+						<input type="text" name="mem_name" placeholder="이름"> <br>
+						<select name="mem_auth">
+							<option value="1">관리자</option>
+							<option value="2">사용자</option>
+						</select><br>
+						<input type="submit" value="회원가입"> 
+					</form>
+				</div>
+				<div class="login">
+					<a th:href="@{/login}">로그인</a>
+				</div>
+			</div>
+		</section>	
+		<script>
+			const form = document.getElementById("memberAddFrm");
+			form.addEventListener('submit',(e) => {
+				e.preventDefault();
+				
+				let obj = {};
+				const payload = new FormData(form);
+				payload.forEach(function(value,key){
+					obj[key] = value;
+				});
+				const jsonData = JSON.stringify(obj);
+				
+				const csrfToken = document.getElementById("csrf_token").value;
+				
+				console.log(jsonData,csrfToken);
+				
+			});
+		</script>
+     </th:block>
+     
+     
+     
+     
+     
+     
+     
+     
+</html>

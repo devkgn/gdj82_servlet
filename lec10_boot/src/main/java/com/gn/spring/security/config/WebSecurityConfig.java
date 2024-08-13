@@ -16,9 +16,13 @@ public class WebSecurityConfig {
 
 	@Bean
 	public SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
-		http.authorizeHttpRequests(requests -> 
+		http
+			//.csrf(csrf -> csrf.ignoringRequestMatchers("/board/**"))
+			.authorizeHttpRequests(requests -> 
 				requests.requestMatchers("/").permitAll()
-						.requestMatchers("/board/**").authenticated())
+						.requestMatchers("/board/**").authenticated()
+						.requestMatchers("/join").permitAll()
+						.requestMatchers("/boardUploadImg/**").permitAll())
 			.formLogin(login -> 
 				login.loginPage("/login")
 					.loginProcessingUrl("/login")
