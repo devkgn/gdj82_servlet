@@ -33,17 +33,59 @@
 			form.addEventListener('submit',(e) => {
 				e.preventDefault();
 				
-				let obj = {};
-				const payload = new FormData(form);
-				payload.forEach(function(value,key){
-					obj[key] = value;
-				});
-				const jsonData = JSON.stringify(obj);
+				let vali_check = false;
+				let vali_text = "";
+				if(form.mem_id.value == ''){
+					vali_text = "아이디를 입력하세요";
+					form.mem_id.focus();
+				} else if(form.mem_pw.value == ''){
+					vali_text="비밀번호를 입력하세요";
+					form.mem_pw.focus();
+				} else if(form.mem_pw_check.value == ''){
+					vali_text = "비밀번호 확인을 입력하세요.";
+					form.mem_pw_check.focus();
+				} else if(form.mem_pw.value != form.mem_pw_check.value){
+					vali_text = "비밀번호가 일치하지 않습니다.";
+					form.mem_pw_check.focus();
+				} else if(form.mem_name.value == ''){
+					vali_text="이름을 입력하세요";
+					form.mem_name.focus();
+				} else{
+					vali_check = true;	
+				}
 				
-				const csrfToken = document.getElementById("csrf_token").value;
-				
-				console.log(jsonData,csrfToken);
-				
+				if(vali_check == false){
+					Swal.fire({
+						icon:'error',
+						title:'실패',
+						text: vali_text,
+						confirmButtonText:"닫기"
+					});
+				} else{
+					let obj = {};
+					const payload = new FormData(form);
+					payload.forEach(function(value,key){
+						obj[key] = value;
+					});
+					const jsonData = JSON.stringify(obj);
+					
+					const csrfToken = document.getElementById("csrf_token").value;
+					
+					/* console.log(jsonData,csrfToken); */
+					fetch('/join',{
+						method:'post',
+						headers : {
+							"Content-Type": "application/json;charset=utf-8",
+							"Accept": "application/json",
+							'X-CSRF-TOKEN': csrfToken
+						},
+						body : jsonData
+					})
+					.then(response => response.json())
+					.then(data => {
+						console.log(data);
+					})
+				}
 			});
 		</script>
      </th:block>
