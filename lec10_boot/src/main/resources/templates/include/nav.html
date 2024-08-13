@@ -16,6 +16,9 @@
 					</li>
 				</ul>
 				<ul sec:authorize="isAuthenticated()">
+					<li sec:authorize="hasAnyAuthority('USER')">
+						<a th:href="@{/chat}">채팅하기</a>
+					</li>
 					<li>
 						<span sec:authentication="principal.dto.mem_name"></span>님
 					</li>

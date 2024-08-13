@@ -34,7 +34,8 @@ public class WebSecurityConfig {
 				requests.requestMatchers("/").permitAll()
 						.requestMatchers("/board/**").authenticated()
 						.requestMatchers("/join").permitAll()
-						.requestMatchers("/boardUploadImg/**").permitAll())
+						.requestMatchers("/boardUploadImg/**").permitAll()
+						.requestMatchers("/chat/**").hasAnyAuthority("USER"))
 			.formLogin(login -> 
 				login.loginPage("/login")
 					.loginProcessingUrl("/login")
