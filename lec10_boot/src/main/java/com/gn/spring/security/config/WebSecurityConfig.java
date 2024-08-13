@@ -30,6 +30,7 @@ public class WebSecurityConfig {
 					.permitAll()
 					.successHandler(new MyLoginSuccessHandler())
 					.failureHandler(new MyLoginFailureHandler()))
+			.logout(logout -> logout.permitAll())
 			.httpBasic(Customizer.withDefaults());
 		return http.build();
 	}
