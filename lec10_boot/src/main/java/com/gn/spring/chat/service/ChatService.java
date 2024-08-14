@@ -34,6 +34,25 @@ public class ChatService {
 		this.chatMsgRepository = chatMsgRepository;
 	}
 	
+	public int createChatMsg(ChatMsgDto dto) {
+		int result = -1;
+		try {
+			ChatRoom room = chatRoomRepository.findByroomNo(dto.getRoom_no());
+			ChatMsg msg = ChatMsg.builder()
+					.chatContent(dto.getChat_content())
+					.isFromSender(dto.getIs_from_sender())
+					.isReceiverRead("N")
+					.chatRoom(room)
+					.build();
+			chatMsgRepository.save(msg);
+			result = 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	
 	public List<ChatMsgDto> selectChatMsgList(Long roomNo, String memId){
 		
 		ChatRoom chatRoom = chatRoomRepository.findByroomNo(roomNo);
@@ -55,7 +74,16 @@ public class ChatService {
 				dto.setSender_id(cm.getChatRoom().getToId());
 				dto.setReceiver_id(cm.getChatRoom().getFromId());
 			}
+			
+			if(dto.getSender_id().equals(memId)) {
+				dto.setMe_flag("Y");
+			}else {
+				dto.setMe_flag("N");
+			}
+			
+			selectChatMsgDtoList.add(dto);
 		}
+		return selectChatMsgDtoList;
 		
 	}
 	

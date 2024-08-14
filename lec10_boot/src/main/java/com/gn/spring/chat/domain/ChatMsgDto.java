@@ -27,6 +27,7 @@ public class ChatMsgDto {
 	private String receiver_id; // 메시지 수신자
 	private String me_flag;		// 로그인 사용자 == 작성자
 	
+	private Long room_no;
 	
 	public ChatMsg toEntity() {
 		return ChatMsg.builder()
