@@ -76,6 +76,8 @@
 				<input type="button" value="채팅 생성" style="float:right;"
 				th:onclick="chatCreate();">
 				<input type="hidden" value="" id="parent_input">
+				<input type="hidden" id="from_id" th:value="${#authentication.principal.dto.mem_id}">
+				<input type="hidden" id="csrf_token" th:value="${_csrf.token}">
 			</div>
 		</div>
 	</section>
@@ -87,7 +89,32 @@
 				if(newWin.closed){
 					clearInterval(timer);
 					const pVal = document.getElementById('parent_input').value;
-					console.log(pVal);
+					if(pVal != ""){
+						const fromId = document.getElementById('from_id').value;
+						let obj = {
+							to_id : pVal,
+							from_id : fromId
+						};
+						const jsonData = JSON.stringify(obj);
+						const csrfToken = document.getElementById('csrf_token').value;
+						fetch('/chat/create',{
+							method : 'post',
+							body : jsonData,
+							headers : {
+								"Content-Type": "application/json;charset=utf-8",
+								"Accept": "application/json",
+								'X-CSRF-TOKEN': csrfToken
+							}
+						})
+						.then(response => response.json())
+						.then(data => {
+							alert(data.res_msg);
+							if(data.res_code == '200'){
+								location.href='/chat';
+								document.getElementById('parent_input').value = '';
+							}
+						})
+					}
 				}
 				
 			},1000);

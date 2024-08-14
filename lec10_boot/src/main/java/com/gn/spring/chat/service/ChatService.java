@@ -28,6 +28,18 @@ public class ChatService {
 		this.memberRepository = memberRepository;
 	}
 	
+	public int createChatRoom(ChatRoomDto dto) {
+		int result = -1;
+		try {
+			ChatRoom cr = dto.toEntity();
+			chatRoomRepository.save(cr);
+			result = 1;
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
 	public Page<ChatRoomDto> selectChatRoomList(Pageable pageable, String memId){
 		Page<ChatRoom> chatRoomList = chatRoomRepository.findAllByfromIdAndtoId(memId,pageable);
 		

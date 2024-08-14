@@ -41,12 +41,17 @@
 				</tbody>
 			</table>
 			<br>
-			<input type="button" value="채팅 시작" style="float:right;">
+			<input type="button" value="채팅 시작" style="float:right;"
+			onclick="createChatRoom();">
 		</div>
 	</div>
 </section>
 <script>
-
+	const createChatRoom = function(){
+		const selectedVal = document.querySelector('input[name="selected_member"]:checked').value;
+		opener.document.getElementById('parent_input').value = selectedVal;
+		window.close();
+	}
 </script>
 </body>
 </html>
