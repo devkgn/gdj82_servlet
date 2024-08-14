@@ -23,6 +23,11 @@ public class ChatMsgDto {
 	private String is_receiver_read;
 	private LocalDateTime send_date;
 	
+	private String sender_id;	// 메시지 작성자(발신자)
+	private String receiver_id; // 메시지 수신자
+	private String me_flag;		// 로그인 사용자 == 작성자
+	
+	
 	public ChatMsg toEntity() {
 		return ChatMsg.builder()
 				.chatNo(chat_no)

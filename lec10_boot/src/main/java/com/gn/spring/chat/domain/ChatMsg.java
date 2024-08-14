@@ -44,7 +44,6 @@ public class ChatMsg {
 	@CreationTimestamp
 	private LocalDateTime sendDate;
 	
-
 	@ManyToOne
 	@JoinColumn(name="room_no")
 	private ChatRoom chatRoom;
