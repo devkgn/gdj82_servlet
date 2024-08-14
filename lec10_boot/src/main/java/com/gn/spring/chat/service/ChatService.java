@@ -12,15 +12,20 @@ import org.springframework.stereotype.Service;
 import com.gn.spring.chat.domain.ChatRoom;
 import com.gn.spring.chat.domain.ChatRoomDto;
 import com.gn.spring.chat.repository.ChatRoomRepository;
+import com.gn.spring.member.domain.Member;
+import com.gn.spring.member.repository.MemberRepository;
 
 @Service
 public class ChatService {
 	
 	private final ChatRoomRepository chatRoomRepository;
+	private final MemberRepository memberRepository;
 	
 	@Autowired
-	public ChatService(ChatRoomRepository chatRoomRepository) {
+	public ChatService(ChatRoomRepository chatRoomRepository,
+			MemberRepository memberRepository) {
 		this.chatRoomRepository = chatRoomRepository;
+		this.memberRepository = memberRepository;
 	}
 	
 	public Page<ChatRoomDto> selectChatRoomList(Pageable pageable, String memId){
@@ -32,19 +37,18 @@ public class ChatService {
 			// 상대방 이름 셋팅
 			// 1. 지금 로그인한 사용자 == fromId -> 상대방 : toId
 			if(memId.equals(dto.getFrom_id())) {
-				
 				// 상대방 아이디 -> 상대방 이름
 				// (1) ChatRoomDto에 필드(not_me_name) 추가
 				// (2) MemberRepository한테 부탁해서 회원 정보 조회(아이디 기준)
+				Member temp = memberRepository.findBymemId(dto.getTo_id());
 				// (3) ChatRoomDto의 not_me_name필드에 회원 이름 셋팅
 				// (4) 목록 화면에 상대방 아이디 -> 이름 
-				
-				
+				dto.setNot_me_name(temp.getMemName());
 				dto.setNot_me_id(dto.getTo_id());
 			} else {
 				// 2. 지금 로그인한 사용자 == toId -> 상대방 : fromId
-				
-				
+				Member temp = memberRepository.findBymemId(dto.getFrom_id());
+				dto.setNot_me_name(temp.getMemName());
 				dto.setNot_me_id(dto.getFrom_id());
 			}
 			chatRoomDtoList.add(dto);

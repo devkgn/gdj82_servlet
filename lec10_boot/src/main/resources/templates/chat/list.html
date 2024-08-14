@@ -39,7 +39,7 @@
 						<th:block th:if="${!#lists.isEmpty(resultList.content)}">
 							<tr th:each="chatRoom, chatRoomStat : ${resultList.content}">
 								<td th:text="${(resultList.pageable.pageSize)*(resultList.pageable.pageNumber)+chatRoomStat.count}"></td>
-								<td th:text="${chatRoom.not_me_id}"></td>
+								<td th:text="${chatRoom.not_me_name}"></td>
 								<td th:text="${chatRoom.last_msg != null} ? ${chatRoom.last_msg} : '대화없음'"></td>
 								<td th:text="${chatRoom.last_date != null} ? ${#temporals.format(chatRoom.last_date, 'yy-MM-dd HH:mm:ss')} : 대화없음"></td>
 								<td>
@@ -73,9 +73,25 @@
 						</th:block>
 					</div>
 				</div>
-				<input type="button" value="채팅 생성" style="float:right;"th:onclick="">
+				<input type="button" value="채팅 생성" style="float:right;"
+				th:onclick="chatCreate();">
+				<input type="hidden" value="" id="parent_input">
 			</div>
 		</div>
 	</section>
+	<script>
+		const chatCreate = function(){
+			let newWin 
+				= window.open('/chat/create','_blank','width=300,height=300');
+			let timer = setInterval(function(){
+				if(newWin.closed){
+					clearInterval(timer);
+					const pVal = document.getElementById('parent_input').value;
+					console.log(pVal);
+				}
+				
+			},1000);
+		}
+	</script>
      </th:block>
 </html>
