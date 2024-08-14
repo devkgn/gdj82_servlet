@@ -29,6 +29,24 @@ public class ChatService {
 		List<ChatRoomDto> chatRoomDtoList = new ArrayList<ChatRoomDto>();
 		for(ChatRoom c : chatRoomList) {
 			ChatRoomDto dto = new ChatRoomDto().toDto(c);
+			// 상대방 이름 셋팅
+			// 1. 지금 로그인한 사용자 == fromId -> 상대방 : toId
+			if(memId.equals(dto.getFrom_id())) {
+				
+				// 상대방 아이디 -> 상대방 이름
+				// (1) ChatRoomDto에 필드(not_me_name) 추가
+				// (2) MemberRepository한테 부탁해서 회원 정보 조회(아이디 기준)
+				// (3) ChatRoomDto의 not_me_name필드에 회원 이름 셋팅
+				// (4) 목록 화면에 상대방 아이디 -> 이름 
+				
+				
+				dto.setNot_me_id(dto.getTo_id());
+			} else {
+				// 2. 지금 로그인한 사용자 == toId -> 상대방 : fromId
+				
+				
+				dto.setNot_me_id(dto.getFrom_id());
+			}
 			chatRoomDtoList.add(dto);
 		}
 		return new PageImpl<>(chatRoomDtoList,pageable,chatRoomList.getTotalElements());
